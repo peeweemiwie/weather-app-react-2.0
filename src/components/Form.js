@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiEndpoint, apiKey } from './Api';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import { blue } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+// import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+// import SearchIcon from '@mui/icons-material/Search';
 import './Form.scss';
 
 const Form = (props) => {
 	const [city, setCity] = useState('');
-	const [displayedUnits, setDisplayedUnits] = useState('F');
+	const [value, setValue] = useState('F');
 	const [units, setUnits] = useState('imperial');
 	const [temperature, setTemperature] = useState(null);
 	const [feelsLike, setFeelsLike] = useState(null);
@@ -19,11 +29,16 @@ const Form = (props) => {
 	const [loaded, setLoaded] = useState(false);
 
 	let weatherData = {};
-	const radioButtonChangeHandler = (event) => {
-		setDisplayedUnits(event.target.value);
-		setUnits(event.target.getAttribute('data-units'));
+	const handleChangeRadioButtons = (event) => {
+		let updatedUnits = '';
+		let targetValue = event.target.value;
+		targetValue === 'F'
+			? (updatedUnits = 'imperial')
+			: (updatedUnits = 'metric');
+		setUnits(updatedUnits);
+		setValue(targetValue);
 	};
-	const textInputChangeHandler = (event) => {
+	const handleTextInputChange = (event) => {
 		setCity(event.target.value);
 	};
 	const setResponseData = (response) => {
@@ -83,38 +98,80 @@ const Form = (props) => {
 	}
 
 	return (
-		<form className='Form' onSubmit={submitHandler}>
-			<input type='text' value={city} onChange={textInputChangeHandler} />
-			<button type='submit'>Submit</button>
-			<div>
-				<label htmlFor='F'>
-					<input
-						type='radio'
-						name='units'
-						value='F'
-						id='F'
-						data-units='imperial'
-						checked={'F' === displayedUnits}
-						onChange={radioButtonChangeHandler}
-					/>
-					F
-				</label>
-			</div>
-			<div>
-				<label htmlFor='C'>
-					<input
-						type='radio'
-						name='units'
-						value='C'
-						id='C'
-						data-units='metric'
-						checked={'C' === displayedUnits}
-						onChange={radioButtonChangeHandler}
-					/>
-					C
-				</label>
-			</div>
-		</form>
+		<section className='Form'>
+			{/* <input type='text' value={city} onChange={textInputChangeHandler} /> */}
+			<Box
+				onSubmit={submitHandler}
+				component='form'
+				sx={{
+					'& > :not(style)': { m: 1, width: '25ch' },
+				}}
+				noValidate
+				autoComplete='off'
+			>
+				<TextField
+					className='input-text'
+					id='city'
+					label='Enter city name'
+					onChange={handleTextInputChange}
+					// InputProps={{
+					// 	startAdornment: (
+					// 		<InputAdornment position='start'>
+					// 			<SearchIcon />
+					// 		</InputAdornment>
+					// 	),
+					// }}
+					variant='filled'
+				/>
+				<button type='submit'>Submit</button>
+
+				<FormControl component='fieldset'>
+					<FormLabel component='legend'>Units</FormLabel>
+					<RadioGroup
+						row
+						aria-label='units'
+						value={value}
+						name='row-radio-buttons-group'
+						onChange={handleChangeRadioButtons}
+					>
+						<FormControlLabel
+							value='F'
+							control={
+								<Radio
+									sx={{
+										'& .MuiSvgIcon-root': {
+											fontSize: 30,
+										},
+										color: blue[300],
+										'&.Mui-checked': {
+											color: blue[500],
+										},
+									}}
+								/>
+							}
+							label='F'
+						/>
+						<FormControlLabel
+							value='C'
+							control={
+								<Radio
+									sx={{
+										'& .MuiSvgIcon-root': {
+											fontSize: 30,
+										},
+										color: blue[300],
+										'&.Mui-checked': {
+											color: blue[500],
+										},
+									}}
+								/>
+							}
+							label='C'
+						/>
+					</RadioGroup>
+				</FormControl>
+			</Box>
+		</section>
 	);
 };
 
