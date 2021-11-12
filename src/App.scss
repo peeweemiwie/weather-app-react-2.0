@@ -1,9 +1,20 @@
 @import './styles/variables.scss';
 
 .App {
-	font-size: 1.8rem;
+	border: 1px solid $gray;
+	display: grid;
+	font-size: $font-size-sm;
+  margin: 3rem auto;
+  padding: 1rem;
+  row-gap: 1rem;
+  width: 100%;
+  @include respond-above(md) {
+    max-width: 80rem;
+  }
 	h1 {
 		font-family: $monsterrat;
+		font-size: $font-size-md;
 		font-weight: 300;
+		margin: 0;
 	}
 }

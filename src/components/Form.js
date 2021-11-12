@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiEndpoint, apiKey } from './Api';
+import './Form.scss';
 
 const Form = (props) => {
 	const [city, setCity] = useState('');
@@ -82,40 +83,38 @@ const Form = (props) => {
 	}
 
 	return (
-		<section className='Form' onSubmit={submitHandler}>
-			<form action=''>
-				<input type='text' value={city} onChange={textInputChangeHandler} />
-				<button type='submit'>Submit</button>
-				<div>
-					<label htmlFor='F'>
-						<input
-							type='radio'
-							name='units'
-							value='F'
-							id='F'
-							data-units='imperial'
-							checked={'F' === displayedUnits}
-							onChange={radioButtonChangeHandler}
-						/>
-						F
-					</label>
-				</div>
-				<div>
-					<label htmlFor='C'>
-						<input
-							type='radio'
-							name='units'
-							value='C'
-							id='C'
-							data-units='metric'
-							checked={'C' === displayedUnits}
-							onChange={radioButtonChangeHandler}
-						/>
-						C
-					</label>
-				</div>
-			</form>
-		</section>
+		<form className='Form' onSubmit={submitHandler}>
+			<input type='text' value={city} onChange={textInputChangeHandler} />
+			<button type='submit'>Submit</button>
+			<div>
+				<label htmlFor='F'>
+					<input
+						type='radio'
+						name='units'
+						value='F'
+						id='F'
+						data-units='imperial'
+						checked={'F' === displayedUnits}
+						onChange={radioButtonChangeHandler}
+					/>
+					F
+				</label>
+			</div>
+			<div>
+				<label htmlFor='C'>
+					<input
+						type='radio'
+						name='units'
+						value='C'
+						id='C'
+						data-units='metric'
+						checked={'C' === displayedUnits}
+						onChange={radioButtonChangeHandler}
+					/>
+					C
+				</label>
+			</div>
+		</form>
 	);
 };
 

@@ -34,8 +34,10 @@ function App() {
 				onReceiveRequest={storeDataHandler}
 				onForecastReceiveRequest={storeForecastDataHandler}
 			/>
+			<main>
 			<Current data={updatedWeatherData} isLoaded={currentDataLoaded} />
 			<Forecast data={updatedForecastData} isLoaded={forecastDataLoaded} />
+			</main>
 		</div>
 	);
 }
