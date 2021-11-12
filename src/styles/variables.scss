@@ -1,0 +1,69 @@
+/* colors */
+$primary: #22b2da;
+$success: #22da93;
+$warning: #f0b03a;
+$danger: #f23557;
+$light: #eee;
+$dark: #0c1425;
+$white: #fff;
+$gray: #414141;
+$light-gray: lighten($gray, 60%);
+$text: $dark;
+$day: #fffacd;
+$night: #000065;
+
+$monsterrat: 'Montserrat', sans-serif;
+$font-size-xl: 6rem;
+$font-size-lg: 5rem;
+$font-size-md: 3rem;
+$font-size-reg: 2rem;
+$font-size-sm: 1.8rem;
+$font-size-xs: 1.4rem;
+
+$gradient-yellow: rgb(255, 241, 188);
+$gradient-day: radial-gradient(
+	circle at 15% 30%,
+	$gradient-yellow 0%,
+	rgba(137, 210, 253, 0.5) 30%
+);
+$gradient-cloudy: radial-gradient(
+	circle at 15% 30%,
+	$gradient-yellow 0%,
+	rgba(81, 138, 171, 0.3) 30%
+);
+$gradient-night: radial-gradient(
+	circle at 15% 30%,
+	rgba(9, 93, 134, 0.8) 0%,
+	rgba(4, 0, 51, 0.95) 50%
+);
+
+//border-radius
+$sm: 3px;
+$md: 5px;
+$lg: 10px;
+$round: 50%;
+
+$breakpoints: (
+	xs: 576px,
+	sm: 768px,
+	md: 992px,
+	lg: 1200px,
+);
+
+@mixin border-bold($color, $radius, $padding, $align) {
+	border: 3px solid $color;
+	border-radius: $radius;
+	padding: $padding;
+	text-align: $align;
+}
+
+@mixin respond-above($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		$breakpoint-value: map-get($breakpoints, $breakpoint);
+		@media (min-width: $breakpoint-value) {
+			@content;
+		}
+	} @else {
+		@warn 'Invalid breakpoint: #{$breakpoint}.';
+	}
+}
