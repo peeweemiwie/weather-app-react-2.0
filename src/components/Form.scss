@@ -1,1 +1,75 @@
 @import '../styles/variables.scss';
+
+.Form {
+	.group-text-input {
+		align-items: center;
+		border: 1px solid $light-gray;
+		display: flex;
+		height: 4rem;
+		position: relative;
+		.label {
+			background-color: $body-bg;
+			left: 1rem;
+			padding: 0 0.5rem;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: all linear 100ms;
+		}
+		.input-text {
+			background-color: transparent;
+			border: 0;
+			color: $white;
+			font-size: $font-size-reg;
+			height: 100%;
+			padding-left: 1rem;
+			text-transform: capitalize;
+			width: calc(100% - 8rem);
+		}
+		.btn {
+			height: 100%;
+			width: 8rem;
+			&.btn-primary {
+				background-color: $primary;
+				border: 1px solid $primary;
+				color: $white;
+			}
+		}
+		&[data-focus='true'],
+		&:focus-within {
+			.label {
+				top: -3px;
+			}
+			.input-text {
+				background-color: transparent !important;
+				border: 0;
+				outline: 0;
+			}
+		}
+	}
+	.fieldset {
+		align-items: center;
+		display: inline-flex;
+		.group-radio-button {
+			margin: 0 0.5rem;
+			.label {
+				align-items: center;
+				display: flex;
+			}
+		}
+		.button-radio {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			border: 1px solid $primary;
+			border-radius: 50%;
+			height: 2rem;
+			margin: 0 0.5rem 0 0;
+			transition: 200ms all linear;
+			width: 2rem;
+			&:checked {
+				border: 0.6rem solid $primary;
+			}
+		}
+	}
+}

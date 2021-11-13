@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiEndpoint, apiKey } from './Api';
+
 import './Form.scss';
 
 const Form = (props) => {
 	const [city, setCity] = useState('');
-	const [displayedUnits, setDisplayedUnits] = useState('F');
+	const [value, setValue] = useState('F');
 	const [units, setUnits] = useState('imperial');
 	const [temperature, setTemperature] = useState(null);
 	const [feelsLike, setFeelsLike] = useState(null);
@@ -19,11 +20,16 @@ const Form = (props) => {
 	const [loaded, setLoaded] = useState(false);
 
 	let weatherData = {};
-	const radioButtonChangeHandler = (event) => {
-		setDisplayedUnits(event.target.value);
-		setUnits(event.target.getAttribute('data-units'));
+	const handleChangeRadioButtons = (event) => {
+		let updatedUnits = '';
+		let targetValue = event.target.value;
+		targetValue === 'F'
+			? (updatedUnits = 'imperial')
+			: (updatedUnits = 'metric');
+		setUnits(updatedUnits);
+		setValue(targetValue);
 	};
-	const textInputChangeHandler = (event) => {
+	const handleTextInputChange = (event) => {
 		setCity(event.target.value);
 	};
 	const setResponseData = (response) => {
@@ -52,7 +58,7 @@ const Form = (props) => {
 		props.onForecastReceiveRequest(selectedWeatherArray);
 	};
 
-	const submitHandler = (event) => {
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
 		axios.get(baseUrl).then(setResponseData);
@@ -83,37 +89,55 @@ const Form = (props) => {
 	}
 
 	return (
-		<form className='Form' onSubmit={submitHandler}>
-			<input type='text' value={city} onChange={textInputChangeHandler} />
-			<button type='submit'>Submit</button>
-			<div>
-				<label htmlFor='F'>
-					<input
-						type='radio'
-						name='units'
-						value='F'
-						id='F'
-						data-units='imperial'
-						checked={'F' === displayedUnits}
-						onChange={radioButtonChangeHandler}
-					/>
-					F
+		<form className='Form' onSubmit={handleSubmit}>
+			<div className='group-text-input' data-focus={city ? true : false}>
+				<label htmlFor='city' className='label'>
+					Enter city name
 				</label>
+				<input
+					className='input-text'
+					type='text'
+					value={city}
+					onChange={handleTextInputChange}
+					id='city'
+				/>
+				<button type='submit' className='btn btn-primary'>
+					Submit
+				</button>
 			</div>
-			<div>
-				<label htmlFor='C'>
-					<input
-						type='radio'
-						name='units'
-						value='C'
-						id='C'
-						data-units='metric'
-						checked={'C' === displayedUnits}
-						onChange={radioButtonChangeHandler}
-					/>
-					C
-				</label>
-			</div>
+			<fieldset className='fieldset'>
+				<legend>Units</legend>
+				<div className='group-radio-button'>
+					<label htmlFor='F' className='label'>
+						<input
+							className='button-radio'
+							type='radio'
+							name='units'
+							value='F'
+							id='F'
+							data-units='imperial'
+							checked={'F' === value}
+							onChange={handleChangeRadioButtons}
+						/>
+						<span className='value'>F</span>
+					</label>
+				</div>
+				<div className='group-radio-button'>
+					<label htmlFor='C' className='label'>
+						<input
+							className='button-radio'
+							type='radio'
+							name='units'
+							value='C'
+							id='C'
+							data-units='metric'
+							checked={'C' === value}
+							onChange={handleChangeRadioButtons}
+						/>
+						<span className='value'>C</span>
+					</label>
+				</div>
+			</fieldset>
 		</form>
 	);
 };
