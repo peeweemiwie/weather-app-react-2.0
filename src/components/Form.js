@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiEndpoint, apiKey } from './Api';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import { blue } from '@mui/material/colors';
-import Box from '@mui/material/Box';
-// import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
-// import SearchIcon from '@mui/icons-material/Search';
+
 import './Form.scss';
 
 const Form = (props) => {
@@ -98,80 +89,56 @@ const Form = (props) => {
 	}
 
 	return (
-		<section className='Form'>
-			{/* <input type='text' value={city} onChange={textInputChangeHandler} /> */}
-			<Box
-				onSubmit={submitHandler}
-				component='form'
-				sx={{
-					'& > :not(style)': { m: 1, width: '25ch' },
-				}}
-				noValidate
-				autoComplete='off'
-			>
-				<TextField
+		<form className='Form'>
+			<div className='group-text-input' data-focus={city ? true : false}>
+				<label htmlFor='city' className='label'>
+					Enter city name
+				</label>
+				<input
 					className='input-text'
-					id='city'
-					label='Enter city name'
+					type='text'
+					value={city}
 					onChange={handleTextInputChange}
-					// InputProps={{
-					// 	startAdornment: (
-					// 		<InputAdornment position='start'>
-					// 			<SearchIcon />
-					// 		</InputAdornment>
-					// 	),
-					// }}
-					variant='filled'
+					id='city'
 				/>
-				<button type='submit'>Submit</button>
-
-				<FormControl component='fieldset'>
-					<FormLabel component='legend'>Units</FormLabel>
-					<RadioGroup
-						row
-						aria-label='units'
-						value={value}
-						name='row-radio-buttons-group'
-						onChange={handleChangeRadioButtons}
-					>
-						<FormControlLabel
+				<button type='submit' className='btn btn-primary'>
+					Submit
+				</button>
+			</div>
+			<fieldset className='fieldset'>
+				<legend>Units</legend>
+				<div className='group-radio-button'>
+					<label htmlFor='F' className='label'>
+						<input
+							className='button-radio'
+							type='radio'
+							name='units'
 							value='F'
-							control={
-								<Radio
-									sx={{
-										'& .MuiSvgIcon-root': {
-											fontSize: 30,
-										},
-										color: blue[300],
-										'&.Mui-checked': {
-											color: blue[500],
-										},
-									}}
-								/>
-							}
-							label='F'
+							id='F'
+							data-units='imperial'
+							checked={'F' === value}
+							onChange={handleChangeRadioButtons}
 						/>
-						<FormControlLabel
+						<span className='value'>F</span>
+					</label>
+				</div>
+				<div className='group-radio-button'>
+					<label htmlFor='C' className='label'>
+						<input
+							className='button-radio'
+							type='radio'
+							name='units'
 							value='C'
-							control={
-								<Radio
-									sx={{
-										'& .MuiSvgIcon-root': {
-											fontSize: 30,
-										},
-										color: blue[300],
-										'&.Mui-checked': {
-											color: blue[500],
-										},
-									}}
-								/>
-							}
-							label='C'
+							id='C'
+							data-units='metric'
+							checked={'C' === value}
+							onChange={handleChangeRadioButtons}
 						/>
-					</RadioGroup>
-				</FormControl>
-			</Box>
-		</section>
+						<span className='value'>C</span>
+					</label>
+				</div>
+			</fieldset>
+		</form>
 	);
 };
 
