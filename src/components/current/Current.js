@@ -1,28 +1,33 @@
 import React from 'react';
+import Header from './Header';
+import Weather from './Weather';
+import Temperature from './Temperature';
+import Humidity from './Humidity';
+import Wind from './Wind';
+import WeatherIcon from '../WeatherIcon';
+import './Current.scss';
 
 const Current = (props) => {
-	// console.log('current', props);
 	return (
-		<section className='Current'>
-			<div>This is where current weather is displayed</div>
-			{props.data.loaded && (
-				<div>
-					{props.data.city}
-					{props.data.description}
-					{props.data.weather}
-					{props.data.feelsLike}
-					{props.data.humidity}
-					{props.data.loaded}
-					{props.data.temperature}
-					{props.data.wind}
-					<img
-						className='icon-weather'
-						src={`http://openweathermap.org/img/wn//${props.data.icon}@2x.png`}
-						alt={`icon for ${props.data.description}`}
-					/>
-				</div>
-			)}
+		<section
+			className='Current'
+			data-theme={props.data.theme}
+			id='current-weather'
+		>
+			<Header name={props.data.city} />
+			<WeatherIcon
+				icon={props.data.icon}
+				description={props.data.description}
+			/>
+			<Weather description={props.data.description} main={props.data.weather} />
+			<Temperature
+				temperature={props.data.temperature}
+				feelsLike={props.data.feelsLike}
+			/>
+			<Humidity humidity={props.data.humidity} />
+			<Wind speed={props.data.wind} />
 		</section>
 	);
 };
+
 export default Current;

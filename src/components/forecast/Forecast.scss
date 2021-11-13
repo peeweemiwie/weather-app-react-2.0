@@ -1,0 +1,29 @@
+@import '../main.scss';
+.Forecast {
+	border: 1px solid $light-gray;
+	padding: 1rem;
+	@import '../main.scss';
+
+	.Daily {
+		align-items: center;
+		border-bottom: 1px solid $light-gray;
+		display: grid;
+		grid-template-columns: 1fr 8rem 5rem;
+		.temperature,
+		.icon-weather {
+			justify-self: center;
+		}
+		.icon-weather {
+			width: 8rem;
+		}
+		.major {
+			font-size: $font-size-reg;
+		}
+		&:last-of-type {
+			border-bottom: 0;
+		}
+		.high {
+			margin-bottom: 0.5rem;
+		}
+	}
+}

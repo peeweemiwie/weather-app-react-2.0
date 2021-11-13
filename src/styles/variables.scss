@@ -68,3 +68,20 @@ $breakpoints: (
 		@warn 'Invalid breakpoint: #{$breakpoint}.';
 	}
 }
+
+// typography
+.h1,
+.h2,
+.h3 {
+	font-family: $monsterrat;
+	font-weight: 300;
+	margin: 0;
+}
+
+.h2 {
+	font-size: $font-size-sm;
+}
+
+.strong {
+	font-weight: 500;
+}

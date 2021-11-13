@@ -1,0 +1,12 @@
+@import '../main.scss';
+
+.Weather {
+	align-self: center;
+	grid-column-start: 1;
+	grid-column-end: 8;
+	justify-self: end;
+	text-align: right;
+	.major {
+		font-size: $font-size-lg;
+	}
+}

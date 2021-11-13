@@ -4,17 +4,36 @@
 	border: 1px solid $gray;
 	display: grid;
 	font-size: $font-size-sm;
-  margin: 3rem auto;
-  padding: 1rem;
-  row-gap: 1rem;
-  width: 100%;
-  @include respond-above(md) {
-    max-width: 80rem;
-  }
+	margin: 3rem auto;
+	padding: 1rem;
+	row-gap: 1rem;
+	width: 100%;
+	@include respond-above(md) {
+		max-width: 100rem;
+	}
 	h1 {
 		font-family: $monsterrat;
 		font-size: $font-size-md;
 		font-weight: 300;
 		margin: 0;
+	}
+	.main {
+		font-size: $font-size-sm;
+		font-weight: 300;
+		@include respond-above(md) {
+			column-gap: 2rem;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	&[data-units='imperial'] {
+		.unit-metric {
+			display: none;
+		}
+	}
+	&[data-units='metric'] {
+		.unit-imperial {
+			display: none;
+		}
 	}
 }

@@ -1,0 +1,15 @@
+@import '../main.scss';
+.Header {
+	grid-column-start: 1;
+	grid-column-end: -1;
+	grid-row: header;
+	@include border-bold($white, $lg, 1rem, left);
+	.container-date {
+		@extend .h2;
+		text-align: end;
+	}
+	.container-city {
+		@extend .h1;
+		text-transform: capitalize;
+	}
+}

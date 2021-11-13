@@ -1,28 +1,27 @@
 import React from 'react';
+import WeatherIcon from '../WeatherIcon';
+import './Forecast.scss';
 
 const Forecast = (props) => {
-	// console.log(props, props.isLoaded);
-	let dailyForecast = [];
-	if (props.isLoaded) {
-		dailyForecast = props.data.map((item, index) => (
-			<div key={index}>
-				<div>{item.description}</div>
-				<div>{item.tempMax}</div>
-				<div>{item.tempMin}</div>
-				<div>
-					<img
-						className='icon-weather'
-						src={`http://openweathermap.org/img/wn//${item.weatherIcon}@2x.png`}
-						alt={`icon for ${item.description}`}
-					/>
-				</div>
-			</div>
-		));
-	}
 	return (
 		<section className='Forecast'>
-			<div>This is where Forecast is displayed</div>
-			{dailyForecast}
+			{props.isLoaded &&
+				props.data.map((item, index) => (
+					<section className='Daily' key={index}>
+						<div>
+							<div className='major'>{item.dt}</div>
+							<div className='minor'>{item.description}</div>
+						</div>
+						<WeatherIcon
+							icon={item.weatherIcon}
+							description={item.description}
+						/>
+						<div className='temperature'>
+							<div className='high'>{item.max}</div>
+							<div className='low'>{item.min}</div>
+						</div>
+					</section>
+				))}
 		</section>
 	);
 };

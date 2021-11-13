@@ -9,32 +9,38 @@ function App() {
 	const [currentDataLoaded, setCurrentDataLoaded] = useState(false);
 	const [updatedForecastData, setUpdatedForecastData] = useState([]);
 	const [forecastDataLoaded, setForecastDataLoaded] = useState(false);
-	const test = (value) => {
+	const [units, setUnits] = useState('');
+	const sendToCurrent = (value) => {
 		setUpdatedWeatherData(value);
 		setCurrentDataLoaded(true);
 	};
-	const test2 = (value) => {
+	const sendToForecast = (value) => {
 		setUpdatedForecastData(value);
 		setForecastDataLoaded(true);
 	};
 	const storeDataHandler = (weatherData) => {
 		const importedWeatherData = { ...weatherData };
-		test(importedWeatherData);
+		sendToCurrent(importedWeatherData);
 	};
 	const storeForecastDataHandler = (array) => {
 		const importedForecastData = [...array];
-		test2(importedForecastData);
+		sendToForecast(importedForecastData);
 	};
+	const setUpdatedUnits = (value) => {
+		setUnits(value);
+	};
+
 	return (
-		<div className='App'>
+		<div className='App' data-units={units ? units : 'imperial'}>
 			<header>
 				<h1>Weather App React 2.0</h1>
 			</header>
 			<Form
+				onSetUnits={setUpdatedUnits}
 				onReceiveRequest={storeDataHandler}
 				onForecastReceiveRequest={storeForecastDataHandler}
 			/>
-			<main>
+			<main className='main'>
 				<Current data={updatedWeatherData} isLoaded={currentDataLoaded} />
 				<Forecast data={updatedForecastData} isLoaded={forecastDataLoaded} />
 			</main>

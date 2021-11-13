@@ -1,0 +1,7 @@
+@import '../main.scss';
+
+.Humidity {
+	@include border-bold($white, $lg, 1rem, center);
+	grid-column-start: 1;
+	grid-column-end: 7;
+}

@@ -5,7 +5,7 @@ import { apiEndpoint, apiKey } from './Api';
 import './Form.scss';
 
 const Form = (props) => {
-	const [city, setCity] = useState('');
+	const [city, setCity] = useState('New York');
 	const [value, setValue] = useState('F');
 	const [units, setUnits] = useState('imperial');
 	const [temperature, setTemperature] = useState(null);
@@ -53,6 +53,7 @@ const Form = (props) => {
 				weatherIcon: item.weather[0].icon,
 				tempMax: item.temp.max,
 				tempMin: item.temp.min,
+				dt: item.dt,
 			};
 		});
 		props.onForecastReceiveRequest(selectedWeatherArray);
@@ -70,6 +71,7 @@ const Form = (props) => {
 	};
 
 	if (loaded) {
+		let theme = icon.indexOf('d') > -1 ? 'light' : 'dark';
 		weatherData = {
 			city: city,
 			temperature: temperature,
@@ -79,11 +81,13 @@ const Form = (props) => {
 			humidity: humidity,
 			wind: wind,
 			icon: icon,
+			theme: theme,
 			loaded: loaded,
 		};
 
 		getForecastData();
 		props.onReceiveRequest(weatherData);
+		props.onSetUnits(units);
 		setCity('');
 		setLoaded(false);
 	}
