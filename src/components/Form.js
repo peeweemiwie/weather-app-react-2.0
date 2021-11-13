@@ -58,7 +58,7 @@ const Form = (props) => {
 		props.onForecastReceiveRequest(selectedWeatherArray);
 	};
 
-	const submitHandler = (event) => {
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
 		axios.get(baseUrl).then(setResponseData);
@@ -89,7 +89,7 @@ const Form = (props) => {
 	}
 
 	return (
-		<form className='Form'>
+		<form className='Form' onSubmit={handleSubmit}>
 			<div className='group-text-input' data-focus={city ? true : false}>
 				<label htmlFor='city' className='label'>
 					Enter city name
