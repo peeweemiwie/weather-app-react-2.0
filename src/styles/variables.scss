@@ -83,6 +83,10 @@ $breakpoints: (
 	}
 }
 
+.transition {
+	transition: all 300ms ease-in-out;
+}
+
 // typography
 .h1,
 .h2,
