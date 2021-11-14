@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiEndpoint, apiKey } from './Api';
-
+import 'material-icons/iconfont/material-icons.css';
 import './Form.scss';
 
 const Form = (props) => {
@@ -18,6 +18,7 @@ const Form = (props) => {
 	const [lon, setLon] = useState(null);
 	const [lat, setLat] = useState(null);
 	const [loaded, setLoaded] = useState(false);
+	const [expanded, setExpanded] = useState(false);
 
 	let weatherData = {};
 	const handleChangeRadioButtons = (event) => {
@@ -70,6 +71,12 @@ const Form = (props) => {
 		axios.get(baseUrl).then(createForecastResponseArray);
 	};
 
+	const handleExpansion = () => {
+		expanded ? setExpanded(false) : setExpanded(true);
+		expanded === false ? setExpanded(true) : setExpanded(false);
+		console.log(expanded);
+	};
+
 	if (loaded) {
 		let theme = icon.indexOf('d') > -1 ? 'light' : 'dark';
 		weatherData = {
@@ -94,22 +101,31 @@ const Form = (props) => {
 
 	return (
 		<form className='Form' onSubmit={handleSubmit}>
-			<div className='group-text-input' data-focus={city ? true : false}>
-				<label htmlFor='city' className='label'>
-					Enter city name
-				</label>
-				<input
-					className='input-text'
-					type='text'
-					value={city}
-					onChange={handleTextInputChange}
-					id='city'
-				/>
-				<button type='submit' className='btn btn-primary'>
-					Submit
+			<div className='group-input'>
+				<div className='group-text-input' data-focus={city ? true : false}>
+					<label htmlFor='city' className='label'>
+						Enter city name
+					</label>
+					<input
+						className='input-text'
+						type='text'
+						value={city}
+						onChange={handleTextInputChange}
+						id='city'
+					/>
+					<button type='submit' className='btn btn-primary'>
+						Submit
+					</button>
+				</div>
+				<button
+					className='button btn-expansion'
+					type='button'
+					onClick={handleExpansion}
+				>
+					<span className='material-icons-outlined'>more_vert</span>
 				</button>
 			</div>
-			<fieldset className='fieldset'>
+			<fieldset className='fieldset' data-expansion={expanded}>
 				<legend>Units</legend>
 				<div className='group-radio-button'>
 					<label htmlFor='F' className='label'>

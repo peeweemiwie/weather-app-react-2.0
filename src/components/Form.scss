@@ -1,15 +1,22 @@
 @import './main.scss';
 
 .Form {
+	$form-radius: $md;
 	@include respond-above(md) {
 		align-items: end;
 		column-gap: 2rem;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 	}
+	.group-input {
+		display: grid;
+		grid-template-columns: auto 4rem;
+		column-gap: 1rem;
+	}
 	.group-text-input {
 		align-items: center;
 		border: 1px solid $light-gray;
+		border-radius: $form-radius;
 		display: flex;
 		height: 5rem;
 		position: relative;
@@ -38,6 +45,7 @@
 			&.btn-primary {
 				background-color: $primary;
 				border: 1px solid $primary;
+				border-radius: 0 $form-radius $form-radius 0;
 				color: $white;
 			}
 		}
@@ -53,9 +61,30 @@
 			}
 		}
 	}
-	.fieldset {
+	.btn-expansion {
 		align-items: center;
+		background-color: transparent;
+		border: 1px solid $light-gray;
+		border-radius: $form-radius;
+		color: $light-gray;
 		display: flex;
+		height: 5rem;
+		justify-content: center;
+		width: 4rem;
+		@include respond-above(md) {
+			display: none;
+		}
+	}
+	.fieldset {
+		&[data-expansion='true'] {
+			display: flex;
+		}
+		&[data-expansion='false'] {
+			display: none;
+		}
+		align-items: center;
+		border-radius: $form-radius;
+
 		.group-radio-button {
 			margin: 0 0.5rem;
 			.label {
