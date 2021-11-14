@@ -17,8 +17,8 @@ const Forecast = (props) => {
 							description={item.description}
 						/>
 						<div className='temperature'>
-							<div className='high'>{item.max}</div>
-							<div className='low'>{item.min}</div>
+							<div className='high'>{Math.round(item.tempMax)}</div>
+							<div className='low'>{Math.round(item.tempMin)}</div>
 						</div>
 					</section>
 				))}

@@ -10,6 +10,7 @@
 		'humidity wind';
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 	grid-template-rows: [header] 9rem [icon] 10rem [weather-temp] auto[humidity-wind] 7rem;
+	height: $main-section-height;
 	padding: 1rem;
 	row-gap: 1rem;
 	.icon-weather {
