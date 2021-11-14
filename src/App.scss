@@ -36,4 +36,11 @@
 			display: none;
 		}
 	}
+	.footer {
+		color: $light-gray;
+		text-align: center;
+		.link {
+			color: $primary;
+		}
+	}
 }

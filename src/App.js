@@ -44,6 +44,20 @@ function App() {
 				<Current data={updatedWeatherData} isLoaded={currentDataLoaded} />
 				<Forecast data={updatedForecastData} isLoaded={forecastDataLoaded} />
 			</main>
+			<footer className='footer'>
+				Design + code by{' '}
+				<a href='https://miwayagi.com/' target='_blank' className='link'>
+					Miwa Kaur
+				</a>
+				. View code at{' '}
+				<a
+					href='https://github.com/peeweemiwie/weather-app-react-2.0'
+					target='_blank'
+					className='link'
+				>
+					GitHub
+				</a>
+			</footer>
 		</div>
 	);
 }
