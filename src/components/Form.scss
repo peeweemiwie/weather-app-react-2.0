@@ -2,6 +2,7 @@
 
 .Form {
 	$form-radius: $md;
+	position: relative;
 	@include respond-above(md) {
 		align-items: end;
 		column-gap: 2rem;
@@ -9,6 +10,9 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.group-input {
+		background-color: $body-bg;
+		position: relative;
+		z-index: 10;
 		@include respond-below(md) {
 			display: grid;
 			grid-template-columns: auto 4rem;
@@ -32,8 +36,9 @@
 			transition: all linear 100ms;
 		}
 		.input-text {
-			background-color: transparent;
+			background-color: $body-bg;
 			border: 0;
+			border-radius: $form-radius;
 			color: $white;
 			font-size: $font-size-reg;
 			height: 100%;
@@ -57,7 +62,7 @@
 				top: -3px;
 			}
 			.input-text {
-				background-color: transparent !important;
+				background-color: $body-bg !important;
 				border: 0;
 				outline: 0;
 			}
@@ -66,27 +71,27 @@
 	.btn-expansion {
 		align-items: center;
 		background-color: transparent;
-		border: 1px solid $light-gray;
+		border: 1px solid $gray;
 		border-radius: $form-radius;
 		color: $light-gray;
 		display: flex;
 		height: 5rem;
 		justify-content: center;
 		width: 4rem;
+		.material-icons-outlined {
+			font-size: 4rem;
+		}
 		@include respond-above(md) {
 			display: none;
 		}
 	}
 	.fieldset {
-		&[data-expansion='true'] {
-			display: flex;
-		}
-		&[data-expansion='false'] {
-			display: none;
-		}
 		align-items: center;
 		border-radius: $form-radius;
-
+		display: flex;
+		position: absolute;
+		top: 0;
+		z-index: 1;
 		.group-radio-button {
 			margin: 0 0.5rem;
 			.label {
@@ -107,6 +112,27 @@
 			&:checked {
 				border: 0.6rem solid $primary;
 			}
+		}
+	}
+	.transition {
+		transition: all 300ms ease-in-out;
+	}
+	&[data-expansion='true'] {
+		height: 12rem;
+		@extend .transition;
+		.fieldset {
+			opacity: 1;
+			transform: translateY(5.5rem);
+			@extend .transition;
+		}
+	}
+	&[data-expansion='false'] {
+		height: 6rem;
+		@extend .transition;
+		.fieldset {
+			opacity: 0;
+			transform: translateY(-2rem);
+			@extend .transition;
 		}
 	}
 }

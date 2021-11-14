@@ -100,7 +100,7 @@ const Form = (props) => {
 	}
 
 	return (
-		<form className='Form' onSubmit={handleSubmit}>
+		<form className='Form' onSubmit={handleSubmit} data-expansion={expanded}>
 			<div className='group-input'>
 				<div className='group-text-input' data-focus={city ? true : false}>
 					<label htmlFor='city' className='label'>
@@ -125,7 +125,7 @@ const Form = (props) => {
 					<span className='material-icons-outlined'>more_vert</span>
 				</button>
 			</div>
-			<fieldset className='fieldset' data-expansion={expanded}>
+			<fieldset className='fieldset'>
 				<legend>Units</legend>
 				<div className='group-radio-button'>
 					<label htmlFor='F' className='label'>
