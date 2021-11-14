@@ -9,9 +9,11 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.group-input {
-		display: grid;
-		grid-template-columns: auto 4rem;
-		column-gap: 1rem;
+		@include respond-below(md) {
+			display: grid;
+			grid-template-columns: auto 4rem;
+			column-gap: 1rem;
+		}
 	}
 	.group-text-input {
 		align-items: center;
