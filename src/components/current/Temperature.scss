@@ -1,7 +1,7 @@
 @import '../link.scss';
 
 .Temperature {
-	align-self: center;
+	align-self: start;
 	grid-column-start: 8;
 	grid-column-end: -1;
 	.major {
@@ -9,22 +9,26 @@
 	}
 	.toggle-converted-info {
 		.btn-no-style {
+			align-items: center;
 			border: 0;
 			background-color: transparent;
+			color: $white;
+			display: flex;
+			padding-left: 0;
+			width: 15rem;
 			.material-icons-outlined {
-				color: $white;
-				font-size: $font-size-md;
+				font-size: $font-size-lg;
 			}
 		}
-		.buttons {
-			align-items: center;
-			display: flex;
-		}
 		.converted-info[data-show='false'] {
-			display: none;
+			opacity: 0;
+			height: 0;
+			transition: all 0.3s;
 		}
 		.converted-info[data-show='true'] {
-			display: block;
+			opacity: 1;
+			height: 5rem;
+			transition: all 0.3s;
 		}
 	}
 }

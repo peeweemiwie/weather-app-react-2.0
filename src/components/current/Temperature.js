@@ -43,9 +43,9 @@ const Temperature = ({ temperature, feelsLike, units }) => {
 		button = (
 			<div className='buttons'>
 				<button className='button btn-no-style' onClick={handleShowInfo}>
-					<span className='material-icons-outlined'>arrow_drop_down</span>
+					<span className='material-icons-outlined'>arrow_drop_down</span>{' '}
+					<span> View in °{units === 'imperial' ? 'C' : 'F'}</span>
 				</button>
-				View in {units === 'imperial' ? 'C' : 'F'}
 			</div>
 		);
 	} else {
@@ -57,7 +57,6 @@ const Temperature = ({ temperature, feelsLike, units }) => {
 			</div>
 		);
 	}
-	console.log(btnToDisplay);
 
 	return (
 		<section className='Temperature'>

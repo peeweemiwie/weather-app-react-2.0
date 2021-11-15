@@ -26,17 +26,17 @@ $font-size-xs: 1.4rem;
 
 $gradient-yellow: rgb(255, 241, 188);
 $gradient-day: radial-gradient(
-	circle at 13% 25%,
+	circle at 70px 240px,
 	$gradient-yellow 0%,
 	rgba(137, 210, 253, 0.5) 20%
 );
 $gradient-cloudy: radial-gradient(
-	circle at 13% 25%,
+	circle at 70px 240px,
 	$gradient-yellow 0%,
 	rgba(81, 138, 171, 0.5) 20%
 );
 $gradient-night: radial-gradient(
-	circle at 15% 30%,
+	circle at 70px 240px,
 	rgba(9, 93, 134, 0.8) 0%,
 	rgba(4, 0, 51, 0.95) 50%
 );
