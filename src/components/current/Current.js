@@ -20,6 +20,7 @@ const Current = (props) => {
 			<Temperature
 				temperature={props.data.temperature}
 				feelsLike={props.data.feelsLike}
+				units={props.units}
 			/>
 			<Humidity humidity={props.data.humidity} />
 			<Wind speed={props.data.wind} />

@@ -7,4 +7,24 @@
 	.major {
 		font-size: $font-size-lg;
 	}
+	.toggle-converted-info {
+		.btn-no-style {
+			border: 0;
+			background-color: transparent;
+			.material-icons-outlined {
+				color: $white;
+				font-size: $font-size-md;
+			}
+		}
+		.buttons {
+			align-items: center;
+			display: flex;
+		}
+		.converted-info[data-show='false'] {
+			display: none;
+		}
+		.converted-info[data-show='true'] {
+			display: block;
+		}
+	}
 }
