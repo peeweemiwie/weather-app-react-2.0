@@ -1,4 +1,4 @@
-@import './main.scss';
+@import './link.scss';
 
 .Form {
 	$form-radius: $md;
@@ -38,7 +38,7 @@
 		.input-text {
 			background-color: $body-bg;
 			border: 0;
-			border-radius: $form-radius;
+			border-radius: $form-radius 0 0 $form-radius;
 			color: $white;
 			font-size: $font-size-reg;
 			height: 100%;

@@ -1,0 +1,10 @@
+@import '../link.scss';
+
+.Footer {
+	color: $light-gray;
+	font-size: $font-size-sm;
+	text-align: center;
+	.link {
+		color: $primary;
+	}
+}

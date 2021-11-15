@@ -1,9 +1,8 @@
-@import '../main.scss';
+@import '../link.scss';
 .Forecast {
 	border: 1px solid $light-gray;
 	height: $main-section-height;
 	padding: 1rem;
-	@import '../main.scss';
 
 	.Daily {
 		align-items: center;
