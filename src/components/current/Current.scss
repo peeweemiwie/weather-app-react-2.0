@@ -9,12 +9,13 @@
 		'weather temperature'
 		'humidity wind';
 	grid-template-columns: repeat(12, minmax(0, 1fr));
-	grid-template-rows: [header] 9rem [icon] 10rem [weather-temp] auto[humidity-wind] 7rem;
+	grid-template-rows: [header] 9rem [icon] 25rem [weather-temp] auto[humidity-wind] 7rem;
 	height: $main-section-height;
 	margin-bottom: 2rem;
 	padding: 1rem 0.5rem;
 	row-gap: 1rem;
-	.icon-weather {
+	.container-icon {
+		align-self: center;
 		grid-row: icon;
 		grid-column-start: 1;
 		grid-column-end: -1;

@@ -12,14 +12,17 @@ const Current = (props) => {
 	return (
 		<section className='Current' data-theme={theme}>
 			<Header name={props.data.city} />
-			<WeatherIcon
-				icon={props.data.icon}
-				description={props.data.description}
-			/>
+			<div className='container-icon'>
+				<WeatherIcon
+					icon={props.data.icon}
+					description={props.data.description}
+				/>
+			</div>
 			<Weather description={props.data.description} main={props.data.weather} />
 			<Temperature
 				temperature={props.data.temperature}
 				feelsLike={props.data.feelsLike}
+				units={props.units}
 			/>
 			<Humidity humidity={props.data.humidity} />
 			<Wind speed={props.data.wind} />

@@ -19,14 +19,17 @@ const Form = (props) => {
 		props.onReceivedData(response);
 		props.onReceivedUnits(units);
 	};
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
 		axios.get(baseUrl).then(handleResponse);
 	};
+
 	const handleTextInputChange = (event) => {
 		setCity(event.target.value);
 	};
+
 	const handleChangeRadioButtons = (event) => {
 		let targetValue = event.target.value;
 		let updatedUnits = targetValue === 'F' ? 'imperial' : 'metric';

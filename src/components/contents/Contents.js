@@ -69,7 +69,7 @@ const Contents = (props) => {
 			/>
 			{arrayLoaded ? (
 				<main className='Main' data-units={units}>
-					<Current data={weatherData} />
+					<Current data={weatherData} units={units} />
 					<Forecast data={weatherArray} loaded={arrayLoaded} />
 				</main>
 			) : (
