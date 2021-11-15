@@ -8,12 +8,15 @@ import './Contents.scss';
 
 const Contents = (props) => {
 	const [arrayLoaded, setArrayLoaded] = useState(false);
-	const [weatherData, setWeatherData] = useState({});
+	const [weatherData, setWeatherData] = useState({ loaded: false });
 	const [units, setUnits] = useState('imperial');
 	const [weatherArray, setWeatherArray] = useState([]);
+	const defaultCity = 'New York';
 
-	const setImportedData = (data) => {
+	const setImportedData = (response) => {
+		const data = response.data;
 		setWeatherData({
+			loaded: true,
 			city: data.name,
 			lon: data.coord.lon,
 			lat: data.coord.lat,
@@ -24,7 +27,6 @@ const Contents = (props) => {
 			description: data.weather[0].description,
 			icon: data.weather[0].icon,
 			wind: Math.round(data.wind.speed),
-			loaded: true,
 		});
 		getForecastData();
 	};
@@ -53,6 +55,11 @@ const Contents = (props) => {
 	const setReceivedUnit = (value) => {
 		setUnits(value);
 	};
+
+	if (!arrayLoaded) {
+		const baseUrl = `${apiEndpoint}weather?q=${defaultCity}&units=${units}&appid=${apiKey}`;
+		axios.get(baseUrl).then(setImportedData);
+	}
 
 	return (
 		<div className='Contents'>

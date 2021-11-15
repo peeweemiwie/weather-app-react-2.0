@@ -16,8 +16,7 @@ const Form = (props) => {
 	};
 
 	const handleResponse = (response) => {
-		const data = response.data;
-		props.onReceivedData(data);
+		props.onReceivedData(response);
 		props.onReceivedUnits(units);
 	};
 	const handleSubmit = (event) => {
