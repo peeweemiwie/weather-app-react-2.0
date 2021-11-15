@@ -1,0 +1,25 @@
+@import '../link.scss';
+
+.Contents {
+	display: grid;
+	font-size: $font-size-sm;
+	font-weight: 300;
+	row-gap: 1rem;
+	.Main {
+		@include respond-above(md) {
+			column-gap: 2rem;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+		&[data-units='imperial'] {
+			.unit-metric {
+				display: none;
+			}
+		}
+		&[data-units='metric'] {
+			.unit-imperial {
+				display: none;
+			}
+		}
+	}
+}

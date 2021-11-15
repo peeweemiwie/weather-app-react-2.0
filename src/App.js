@@ -1,63 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.scss';
-import Form from './components/Form';
-import Current from './components/current/Current';
-import Forecast from './components/forecast/Forecast';
-
+import Footer from './components/footer/Footer';
+import Contents from './components/contents/Contents';
 function App() {
-	const [updatedWeatherData, setUpdatedWeatherData] = useState({});
-	const [currentDataLoaded, setCurrentDataLoaded] = useState(false);
-	const [updatedForecastData, setUpdatedForecastData] = useState([]);
-	const [forecastDataLoaded, setForecastDataLoaded] = useState(false);
-	const [units, setUnits] = useState('');
-	const sendToCurrent = (value) => {
-		setUpdatedWeatherData(value);
-		setCurrentDataLoaded(true);
-	};
-	const sendToForecast = (value) => {
-		setUpdatedForecastData(value);
-		setForecastDataLoaded(true);
-	};
-	const storeDataHandler = (weatherData) => {
-		const importedWeatherData = { ...weatherData };
-		sendToCurrent(importedWeatherData);
-	};
-	const storeForecastDataHandler = (array) => {
-		const importedForecastData = [...array];
-		sendToForecast(importedForecastData);
-	};
-	const setUpdatedUnits = (value) => {
-		setUnits(value);
-	};
-
 	return (
-		<div className='App' data-units={units ? units : 'imperial'}>
+		<div className='App'>
 			<header>
 				<h1>Weather App React 2.0</h1>
 			</header>
-			<Form
-				onSetUnits={setUpdatedUnits}
-				onReceiveRequest={storeDataHandler}
-				onForecastReceiveRequest={storeForecastDataHandler}
-			/>
-			<main className='main'>
-				<Current data={updatedWeatherData} isLoaded={currentDataLoaded} />
-				<Forecast data={updatedForecastData} isLoaded={forecastDataLoaded} />
-			</main>
-			<footer className='footer'>
-				Design + code by{' '}
-				<a href='https://miwayagi.com/' target='_blank' className='link'>
-					Miwa Kaur
-				</a>
-				. View code at{' '}
-				<a
-					href='https://github.com/peeweemiwie/weather-app-react-2.0'
-					target='_blank'
-					className='link'
-				>
-					GitHub
-				</a>
-			</footer>
+			<Contents />
+			<Footer />
 		</div>
 	);
 }

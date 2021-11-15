@@ -5,99 +5,35 @@ import 'material-icons/iconfont/material-icons.css';
 import './Form.scss';
 
 const Form = (props) => {
-	const [city, setCity] = useState('New York');
+	const [expanded, setExpanded] = useState(false);
+	const [city, setCity] = useState('');
 	const [value, setValue] = useState('F');
 	const [units, setUnits] = useState('imperial');
-	const [temperature, setTemperature] = useState(null);
-	const [feelsLike, setFeelsLike] = useState(null);
-	const [description, setDescription] = useState('');
-	const [weather, setWeather] = useState('');
-	const [humidity, setHumidity] = useState(null);
-	const [wind, setWind] = useState(null);
-	const [icon, setIcon] = useState('');
-	const [lon, setLon] = useState(null);
-	const [lat, setLat] = useState(null);
-	const [loaded, setLoaded] = useState(false);
-	const [expanded, setExpanded] = useState(false);
-
-	let weatherData = {};
-	const handleChangeRadioButtons = (event) => {
-		let updatedUnits = '';
-		let targetValue = event.target.value;
-		targetValue === 'F'
-			? (updatedUnits = 'imperial')
-			: (updatedUnits = 'metric');
-		setUnits(updatedUnits);
-		setValue(targetValue);
-	};
-	const handleTextInputChange = (event) => {
-		setCity(event.target.value);
-	};
-	const setResponseData = (response) => {
-		const data = response.data;
-		setTemperature(Math.round(data.main.temp));
-		setFeelsLike(Math.round(data.main.feels_like));
-		setDescription(data.weather[0].description);
-		setWeather(data.weather[0].main);
-		setHumidity(data.main.humidity);
-		setWind(data.wind.speed);
-		setIcon(data.weather[0].icon);
-		setLon(data.coord.lon);
-		setLat(data.coord.lat);
-		setLoaded(true);
-	};
-
-	const createForecastResponseArray = (response) => {
-		let selectedWeatherArray = response.data.daily.map((item) => {
-			return {
-				description: item.weather[0].description,
-				weatherIcon: item.weather[0].icon,
-				tempMax: item.temp.max,
-				tempMin: item.temp.min,
-				dt: item.dt,
-			};
-		});
-		props.onForecastReceiveRequest(selectedWeatherArray);
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
-		axios.get(baseUrl).then(setResponseData);
-	};
-
-	const getForecastData = () => {
-		const baseUrl = `${apiEndpoint}onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&units=${units}&appid=${apiKey}`;
-		axios.get(baseUrl).then(createForecastResponseArray);
-	};
 
 	const handleExpansion = () => {
 		expanded ? setExpanded(false) : setExpanded(true);
 		expanded === false ? setExpanded(true) : setExpanded(false);
-		console.log(expanded);
 	};
 
-	if (loaded) {
-		let theme = icon.indexOf('d') > -1 ? 'light' : 'dark';
-		weatherData = {
-			city: city,
-			temperature: temperature,
-			feelsLike: feelsLike,
-			weather: weather,
-			description: description,
-			humidity: humidity,
-			wind: wind,
-			icon: icon,
-			theme: theme,
-			loaded: loaded,
-		};
-
-		getForecastData();
-		props.onReceiveRequest(weatherData);
-		props.onSetUnits(units);
-		setCity('');
-		setLoaded(false);
-	}
+	const handleResponse = (response) => {
+		const data = response.data;
+		props.onReceivedData(data);
+		props.onReceivedUnits(units);
+	};
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
+		axios.get(baseUrl).then(handleResponse);
+	};
+	const handleTextInputChange = (event) => {
+		setCity(event.target.value);
+	};
+	const handleChangeRadioButtons = (event) => {
+		let targetValue = event.target.value;
+		let updatedUnits = targetValue === 'F' ? 'imperial' : 'metric';
+		setUnits(updatedUnits);
+		setValue(targetValue);
+	};
 
 	return (
 		<form className='Form' onSubmit={handleSubmit} data-expansion={expanded}>

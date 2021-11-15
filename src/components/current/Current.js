@@ -8,12 +8,9 @@ import WeatherIcon from '../WeatherIcon';
 import './Current.scss';
 
 const Current = (props) => {
+	let theme = props.data.icon.indexOf('d') > -1 ? 'light' : 'dark';
 	return (
-		<section
-			className='Current'
-			data-theme={props.data.theme}
-			id='current-weather'
-		>
+		<section className='Current' data-theme={theme}>
 			<Header name={props.data.city} />
 			<WeatherIcon
 				icon={props.data.icon}
