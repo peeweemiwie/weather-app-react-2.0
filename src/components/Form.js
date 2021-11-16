@@ -10,7 +10,7 @@ const Form = (props) => {
 	const [temperatureUnit, setTemperatureUnit] = useState('F');
 	const [units, setUnits] = useState('imperial');
 
-	const handleExpansion = () => {
+	const handleRadioButtonExpansion = () => {
 		expanded ? setExpanded(false) : setExpanded(true);
 		expanded === false ? setExpanded(true) : setExpanded(false);
 	};
@@ -58,7 +58,7 @@ const Form = (props) => {
 				<button
 					className='button btn-expansion'
 					type='button'
-					onClick={handleExpansion}
+					onClick={handleRadioButtonExpansion}
 				>
 					<span className='material-icons-outlined'>more_vert</span>
 				</button>
