@@ -1,4 +1,4 @@
-let apiKey = 'ca544697c48cca918d7f2cc001774bb3';
+let apiKey = 'ca710c5c7e60143c48dc86aa6efca6ff';
 let apiEndpoint = 'https://api.openweathermap.org/data/2.5/';
 
 export { apiEndpoint, apiKey };

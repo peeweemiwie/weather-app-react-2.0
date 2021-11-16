@@ -5,7 +5,9 @@ import { apiEndpoint, apiKey } from '../Api';
 import './Forecast.scss';
 
 const Forecast = (props) => {
-	console.log('forecast', props);
+	const createForecastResponseArray = (response) => {
+		console.log('forecast', response);
+	};
 
 	if (props.coord) {
 		const lat = props.coord.lat;
