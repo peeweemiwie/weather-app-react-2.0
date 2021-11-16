@@ -7,7 +7,7 @@ import './Form.scss';
 const Form = (props) => {
 	const [expanded, setExpanded] = useState(false);
 	const [city, setCity] = useState('');
-	const [value, setValue] = useState('F');
+	const [temperatureUnit, setTemperatureUnit] = useState('F');
 	const [units, setUnits] = useState('imperial');
 
 	const handleExpansion = () => {
@@ -32,9 +32,9 @@ const Form = (props) => {
 
 	const handleChangeRadioButtons = (event) => {
 		let targetValue = event.target.value;
-		let updatedUnits = targetValue === 'F' ? 'imperial' : 'metric';
-		setUnits(updatedUnits);
-		setValue(targetValue);
+		let selectedUnits = targetValue === 'F' ? 'imperial' : 'metric';
+		setUnits(selectedUnits);
+		setTemperatureUnit(targetValue);
 	};
 
 	return (
@@ -74,10 +74,10 @@ const Form = (props) => {
 							value='F'
 							id='F'
 							data-units='imperial'
-							checked={'F' === value}
+							checked={'F' === temperatureUnit}
 							onChange={handleChangeRadioButtons}
 						/>
-						<span className='value'>F</span>
+						<span className='temperature-unit'>F</span>
 					</label>
 				</div>
 				<div className='group-radio-button'>
@@ -89,10 +89,10 @@ const Form = (props) => {
 							value='C'
 							id='C'
 							data-units='metric'
-							checked={'C' === value}
+							checked={'C' === temperatureUnit}
 							onChange={handleChangeRadioButtons}
 						/>
-						<span className='value'>C</span>
+						<span className='temperature-unit'>C</span>
 					</label>
 				</div>
 			</fieldset>

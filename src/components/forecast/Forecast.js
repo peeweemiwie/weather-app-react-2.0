@@ -1,23 +1,23 @@
 import React from 'react';
-import WeatherIcon from '../WeatherIcon';
+import Daily from './Daily';
+import axios from 'axios';
+import { apiEndpoint, apiKey } from '../Api';
 import './Forecast.scss';
 
 const Forecast = (props) => {
+	console.log('forecast', props);
+
+	if (props.coord) {
+		const lat = props.coord.lat;
+		const lon = props.coord.lon;
+		const units = props.units;
+		const baseUrl = `${apiEndpoint}onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&units=${units}&appid=${apiKey}`;
+		axios.get(baseUrl).then(createForecastResponseArray);
+	}
+
 	return (
 		<section className='Forecast'>
-			{props.data.map((item, index) => (
-				<section className='Daily' key={index}>
-					<div>
-						<div className='major'>{item.dt}</div>
-						<div className='minor'>{item.description}</div>
-					</div>
-					<WeatherIcon icon={item.weatherIcon} description={item.description} />
-					<div className='temperature'>
-						<div className='high'>{Math.round(item.tempMax)}</div>
-						<div className='low'>{Math.round(item.tempMin)}</div>
-					</div>
-				</section>
-			))}
+			<Daily array={props} />
 		</section>
 	);
 };
