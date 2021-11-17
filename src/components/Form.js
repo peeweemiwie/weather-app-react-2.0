@@ -18,6 +18,7 @@ const Form = (props) => {
 	const handleResponse = (response) => {
 		props.onReceivedData(response);
 		props.onReceivedUnits(units);
+		setCity('');
 	};
 
 	const handleSubmit = (event) => {
@@ -37,6 +38,10 @@ const Form = (props) => {
 		setTemperatureUnit(targetValue);
 	};
 
+	const handleClearValue = () => {
+		setCity('');
+	};
+
 	return (
 		<form className='Form' onSubmit={handleSubmit} data-expansion={expanded}>
 			<div className='group-input'>
@@ -51,6 +56,14 @@ const Form = (props) => {
 						onChange={handleTextInputChange}
 						id='city'
 					/>
+					{city && (
+						<button
+							onClick={handleClearValue}
+							className='button btn-no-style btn-clear'
+						>
+							<span class='material-icons-outlined'>clear</span>
+						</button>
+					)}
 					<button type='submit' className='btn btn-primary'>
 						Submit
 					</button>
