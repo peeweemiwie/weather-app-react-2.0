@@ -67,6 +67,14 @@
 				outline: 0;
 			}
 		}
+		.btn-clear {
+			align-items: center;
+			display: flex;
+			.material-icons-outlined {
+				background-color: $body-bg;
+				color: $white;
+			}
+		}
 	}
 	.btn-expansion {
 		align-items: center;
