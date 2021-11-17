@@ -3,7 +3,6 @@ import axios from 'axios';
 import { apiEndpoint, apiKey } from '../Api';
 import Form from '../Form';
 import Current from '../current/Current';
-import Forecast from '../forecast/Forecast';
 import './Contents.scss';
 
 const Contents = (props) => {
@@ -31,6 +30,7 @@ const Contents = (props) => {
 		setUnits(value);
 	};
 
+	// Initial rendering
 	if (!weatherData.loaded) {
 		const baseUrl = `${apiEndpoint}weather?q=${defaultCity}&units=${units}&appid=${apiKey}`;
 		axios.get(baseUrl).then(setImportedData);
@@ -43,14 +43,9 @@ const Contents = (props) => {
 				onReceivedUnits={setReceivedUnit}
 			/>
 			{weatherData.loaded ? (
-				<main className='Main' data-units={units}>
-					<Current data={weatherData} units={units} />
-					<Forecast coord={weatherData.coord} units={units} />
-				</main>
+				<Current data={weatherData} units={units} />
 			) : (
-				<main className='Main' data-units={units}>
-					<p>Loading...</p>
-				</main>
+				<p>Loading...</p>
 			)}
 		</div>
 	);
