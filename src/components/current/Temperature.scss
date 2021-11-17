@@ -2,33 +2,16 @@
 
 .Temperature {
 	align-self: start;
-	grid-column-start: 8;
+	grid-column-start: 1;
 	grid-column-end: -1;
+	grid-row: main;
+	padding-right: 1rem;
+	text-align: right;
 	.major {
-		font-size: $font-size-lg;
+		font-size: $font-size-xl;
+		line-height: 1;
 	}
-	.toggle-converted-info {
-		.btn-no-style {
-			align-items: center;
-			border: 0;
-			background-color: transparent;
-			color: $white;
-			display: flex;
-			padding-left: 0;
-			width: 15rem;
-			.material-icons-outlined {
-				font-size: $font-size-lg;
-			}
-		}
-		.converted-info[data-show='false'] {
-			opacity: 0;
-			height: 0;
-			transition: all 0.3s;
-		}
-		.converted-info[data-show='true'] {
-			opacity: 1;
-			height: 5rem;
-			transition: all 0.3s;
-		}
+	.minor {
+		font-size: $font-size-sm;
 	}
 }
