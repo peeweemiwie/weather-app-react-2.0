@@ -1,12 +1,18 @@
 @import '../link.scss';
 
 .Weather {
-	align-self: start;
-	grid-column-start: 1;
-	grid-column-end: 7;
-	justify-self: end;
-	text-align: right;
+	color: $primary;
+	top: 50%;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
 	.major {
-		font-size: $font-size-lg;
+		font-size: 8rem;
+		font-weight: 300;
+		line-height: 1;
+	}
+	.minor {
+		font-size: $font-size-md;
 	}
 }

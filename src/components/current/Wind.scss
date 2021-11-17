@@ -1,7 +1,0 @@
-@import '../link.scss';
-
-.Wind {
-	@include border-bold($white, $lg, 1rem, center);
-	grid-column-start: 7;
-	grid-column-end: -1;
-}
