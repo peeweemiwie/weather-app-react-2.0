@@ -42,8 +42,20 @@ const Form = (props) => {
 		setCity('');
 	};
 
+	const handleEnter = (event) => {
+		if (event.keyCode === 13) {
+			const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
+			axios.get(baseUrl).then(handleResponse);
+		}
+	};
+
 	return (
-		<form className='Form' onSubmit={handleSubmit} data-expansion={expanded}>
+		<form
+			className='Form'
+			onSubmit={handleSubmit}
+			onKeyDown={handleEnter}
+			data-expansion={expanded}
+		>
 			<div className='group-input'>
 				<div className='group-text-input' data-focus={city ? true : false}>
 					<label htmlFor='city' className='label'>
@@ -61,7 +73,7 @@ const Form = (props) => {
 							onClick={handleClearValue}
 							className='button btn-no-style btn-clear'
 						>
-							<span class='material-icons-outlined'>clear</span>
+							<span className='material-icons-outlined'>clear</span>
 						</button>
 					)}
 					<button type='submit' className='btn btn-primary'>
