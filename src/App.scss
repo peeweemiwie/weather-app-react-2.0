@@ -5,12 +5,12 @@
 	margin: 0 auto;
 	padding: 1rem;
 	width: 100%;
-	@include respond-above(md) {
+	@include respond-above(sm) {
 		max-width: 100rem;
 	}
 	.app-title {
 		display: none;
-		@include respond-above(md) {
+		@include respond-above(sm) {
 			display: block;
 			font-family: $monsterrat;
 			font-size: $font-size-md;

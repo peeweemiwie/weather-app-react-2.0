@@ -5,7 +5,7 @@
 	grid-column-start: 1;
 	grid-column-end: -1;
 	grid-row: temperature;
-	padding: 2rem 1rem 0 0;
+	padding-right: 1rem;
 	text-align: right;
 	.major {
 		color: $warning;
