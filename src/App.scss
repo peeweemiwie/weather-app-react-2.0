@@ -8,10 +8,14 @@
 	@include respond-above(md) {
 		max-width: 100rem;
 	}
-	h1 {
-		font-family: $monsterrat;
-		font-size: $font-size-md;
-		font-weight: 300;
-		margin: 0;
+	.app-title {
+		display: none;
+		@include respond-above(md) {
+			display: block;
+			font-family: $monsterrat;
+			font-size: $font-size-md;
+			font-weight: 300;
+			margin: 0;
+		}
 	}
 }

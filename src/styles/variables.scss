@@ -58,7 +58,7 @@ $breakpoints: (
 );
 
 @mixin border-bold($color, $radius, $padding, $align) {
-	border: 3px solid $color;
+	border: 2px solid $color;
 	border-radius: $radius;
 	padding: $padding;
 	text-align: $align;
@@ -100,12 +100,16 @@ $breakpoints: (
 .h2,
 .h3 {
 	font-family: $monsterrat;
-	font-weight: 300;
+
 	margin: 0;
 }
-
+.h1 {
+	font-size: $font-size-md;
+	font-weight: 500;
+}
 .h2 {
 	font-size: $font-size-sm;
+	font-weight: 300;
 }
 
 .strong {
