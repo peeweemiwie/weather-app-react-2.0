@@ -23,13 +23,7 @@ const Current = (props) => {
 	}
 	return (
 		<main className='Main' data-units={props.units}>
-			<section
-				className='Current'
-				data-theme={theme}
-				style={{
-					backgroundImage: `url('https://raw.githubusercontent.com/peeweemiwie/weather-icons/main/img/${props.data.icon}.svg')`,
-				}}
-			>
+			<section className='Current' data-theme={theme}>
 				<Header name={props.data.city} />
 				<Temperature
 					temperature={props.data.temperature}
@@ -39,6 +33,7 @@ const Current = (props) => {
 				<Weather
 					description={props.data.description}
 					main={props.data.weather}
+					icon={props.data.icon}
 				/>
 				<HumidityWind humidity={props.data.humidity} speed={props.data.wind} />
 			</section>
