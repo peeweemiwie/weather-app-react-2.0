@@ -1,4 +1,5 @@
-@import '../link.scss';
+@use '../../styles/index' as *;
+
 .Humidity-Wind {
 	display: grid;
 	grid-column-start: 1;

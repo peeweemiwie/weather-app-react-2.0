@@ -1,5 +1,6 @@
 import WeatherIcon from '../WeatherIcon';
 import { daysArray, monthArray } from '../Dates';
+import './Daily.scss';
 
 const Daily = (props) => {
 	const constructDate = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { apiEndpoint, apiKey } from './Api';
+import { apiEndpoint, apiKey } from '../Api';
 import 'material-icons/iconfont/material-icons.css';
 import './Form.scss';
 

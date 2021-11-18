@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiEndpoint, apiKey } from '../Api';
-import Form from '../Form';
+import Form from '../form/Form';
 import Current from '../current/Current';
 import Navigation from './Navigation';
 import './Contents.scss';
