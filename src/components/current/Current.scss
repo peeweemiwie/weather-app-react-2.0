@@ -9,7 +9,7 @@
 		'weather'
 		'bottom';
 	grid-template-columns: repeat(12, minmax(0, 1fr));
-	grid-template-rows: [header] 9rem [temperature] 9rem [weather]36rem [bottom] 7rem;
+	grid-template-rows: [header] 9rem [temperature] 7rem [weather]35rem [bottom] 7rem;
 	height: $main-section-height;
 	margin-bottom: 2rem;
 	padding: 1rem 0.5rem;

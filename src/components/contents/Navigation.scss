@@ -1,0 +1,17 @@
+@import '../link.scss';
+
+.Navigation {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	height: 4rem;
+	.NavButton {
+		border-bottom: 4px solid transparent;
+		color: $primary;
+		&[data-active='true'] {
+			border-bottom-color: $warning;
+		}
+	}
+	@include respond-above(sm) {
+		display: none;
+	}
+}

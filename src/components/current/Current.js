@@ -22,7 +22,11 @@ const Current = (props) => {
 		theme = 'dark';
 	}
 	return (
-		<main className='Main' data-units={props.units}>
+		<main
+			className='Main'
+			data-units={props.units}
+			data-component={props.component}
+		>
 			<section className='Current' data-theme={theme}>
 				<Header name={props.data.city} />
 				<Temperature

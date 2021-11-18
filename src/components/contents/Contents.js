@@ -3,10 +3,12 @@ import axios from 'axios';
 import { apiEndpoint, apiKey } from '../Api';
 import Form from '../Form';
 import Current from '../current/Current';
+import Navigation from './Navigation';
 import './Contents.scss';
 
 const Contents = (props) => {
 	const [weatherData, setWeatherData] = useState({ loaded: false });
+	const [activeComponent, setActiveComponent] = useState('current');
 	const [units, setUnits] = useState('imperial');
 	const defaultCity = 'New York';
 
@@ -30,6 +32,11 @@ const Contents = (props) => {
 		setUnits(value);
 	};
 
+	// receive component to show on mobile from Navigation tabs
+	const showComponent = (component) => {
+		setActiveComponent(component);
+	};
+
 	// Initial rendering
 	if (!weatherData.loaded) {
 		const baseUrl = `${apiEndpoint}weather?q=${defaultCity}&units=${units}&appid=${apiKey}`;
@@ -37,13 +44,14 @@ const Contents = (props) => {
 	}
 
 	return (
-		<div className='Contents'>
+		<div className='Contents' data-active-component={activeComponent}>
 			<Form
 				onReceivedData={setImportedData}
 				onReceivedUnits={setReceivedUnit}
 			/>
+			<Navigation onActivateComponent={showComponent} />
 			{weatherData.loaded ? (
-				<Current data={weatherData} units={units} />
+				<Current data={weatherData} units={units} component={activeComponent} />
 			) : (
 				<p>Loading...</p>
 			)}
