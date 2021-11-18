@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&family=Roboto:wght@100;300;400;500&display=swap');
+
+/* colors */
+$primary: #22b2da;
+$success: #22da93;
+$warning: #feb900;
+$danger: #f23557;
+$light: #eee;
+$dark: #0c1425;
+$white: #fff;
+$gray: #414141;
+$light-gray: lighten($gray, 60%);
+$text: $dark;
+$day: #fffacd;
+$night: #000065;
+$body-bg: #202124;
+$cloudy: lighten($gray, 20%);
+
+$monsterrat: 'Montserrat', sans-serif;
+
+$font-size-xl: 6rem;
+$font-size-lg: 5rem;
+$font-size-md: 3rem;
+$font-size-reg: 2rem;
+$font-size-sm: 1.8rem;
+$font-size-xs: 1.4rem;
+
+//border-radius
+$sm: 3px;
+$md: 5px;
+$lg: 10px;
+$round: 50%;
+
+// This is shared between current and forecast modules
+$main-section-height: 63rem;

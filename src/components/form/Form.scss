@@ -1,4 +1,4 @@
-@import '../link.scss';
+@use '../../styles/index' as *;
 
 .Form {
 	$form-radius: $md;

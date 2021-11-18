@@ -1,4 +1,5 @@
-@import '../link.scss';
+@use '../../styles/index' as *;
+
 .Header {
 	grid-column-start: 1;
 	grid-column-end: -1;
