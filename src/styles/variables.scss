@@ -1,7 +1,8 @@
 /* colors */
 $primary: #22b2da;
 $success: #22da93;
-$warning: #f0b03a;
+$warning: #feb900;
+// $warning: #f0b03a;
 $danger: #f23557;
 $light: #eee;
 $dark: #0c1425;
@@ -12,7 +13,8 @@ $text: $dark;
 $day: #fffacd;
 $night: #000065;
 $body-bg: #202124;
-$cloudy: #808080;
+$cloudy: lighten($gray, 20%);
+// $cloudy: #9f9f9f;
 
 $monsterrat: 'Montserrat', sans-serif;
 

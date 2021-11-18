@@ -1,18 +1,40 @@
 @import '../link.scss';
 
 .Weather {
-	color: $primary;
-	top: 50%;
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
+	display: flex;
+	grid-row: weather;
+	grid-column-start: 1;
+	grid-column-end: -1;
+	justify-content: center;
+	.container {
+		background-color: rgba($white, 0.3);
+		background-repeat: no-repeat;
+		background-size: 24rem;
+		background-position: center center;
+		border-radius: 50%;
+		color: $primary;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 34rem;
+		height: 34rem;
+	}
+
 	.major {
 		font-size: 8rem;
-		font-weight: 300;
 		line-height: 1;
+		text-shadow: 2px 2px 2px $gray;
 	}
 	.minor {
+		color: $gray;
 		font-size: $font-size-md;
+		line-height: 1;
+		text-shadow: 1px 1px 2px $white;
+	}
+	.major,
+	.minor {
+		font-weight: 500;
 	}
 }
