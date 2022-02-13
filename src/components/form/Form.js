@@ -4,58 +4,37 @@ import { apiEndpoint, apiKey } from '../Api';
 import 'material-icons/iconfont/material-icons.css';
 import './Form.scss';
 
-const Form = (props) => {
-	const [expanded, setExpanded] = useState(false);
+const Form = props => {
 	const [city, setCity] = useState('');
-	const [temperatureUnit, setTemperatureUnit] = useState('F');
-	const [units, setUnits] = useState('imperial');
 
-	const handleRadioButtonExpansion = () => {
-		expanded ? setExpanded(false) : setExpanded(true);
-		expanded === false ? setExpanded(true) : setExpanded(false);
-	};
-
-	const handleResponse = (response) => {
+	const handleResponse = response => {
 		props.onReceivedData(response);
-		props.onReceivedUnits(units);
 		setCity('');
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = event => {
 		event.preventDefault();
-		const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
+		const baseUrl = `${apiEndpoint}weather?q=${city}&units=imperial&appid=${apiKey}`;
 		axios.get(baseUrl).then(handleResponse);
 	};
 
-	const handleTextInputChange = (event) => {
+	const handleTextInputChange = event => {
 		setCity(event.target.value);
-	};
-
-	const handleChangeRadioButtons = (event) => {
-		let targetValue = event.target.value;
-		let selectedUnits = targetValue === 'F' ? 'imperial' : 'metric';
-		setUnits(selectedUnits);
-		setTemperatureUnit(targetValue);
 	};
 
 	const handleClearValue = () => {
 		setCity('');
 	};
 
-	const handleEnter = (event) => {
+	const handleEnter = event => {
 		if (event.keyCode === 13) {
-			const baseUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
+			const baseUrl = `${apiEndpoint}weather?q=${city}&units=imperial&appid=${apiKey}`;
 			axios.get(baseUrl).then(handleResponse);
 		}
 	};
 
 	return (
-		<form
-			className='Form'
-			onSubmit={handleSubmit}
-			onKeyDown={handleEnter}
-			data-expansion={expanded}
-		>
+		<form className='Form' onSubmit={handleSubmit} onKeyDown={handleEnter}>
 			<div className='group-input'>
 				<div className='group-text-input' data-focus={city ? true : false}>
 					<label htmlFor='city' className='label'>
@@ -80,47 +59,7 @@ const Form = (props) => {
 						Submit
 					</button>
 				</div>
-				<button
-					className='button btn-expansion'
-					type='button'
-					onClick={handleRadioButtonExpansion}
-				>
-					<span className='material-icons-outlined'>more_vert</span>
-				</button>
 			</div>
-			<fieldset className='fieldset'>
-				<legend>Units</legend>
-				<div className='group-radio-button'>
-					<label htmlFor='F' className='label'>
-						<input
-							className='button-radio'
-							type='radio'
-							name='units'
-							value='F'
-							id='F'
-							data-units='imperial'
-							checked={'F' === temperatureUnit}
-							onChange={handleChangeRadioButtons}
-						/>
-						<span className='temperature-unit'>F</span>
-					</label>
-				</div>
-				<div className='group-radio-button'>
-					<label htmlFor='C' className='label'>
-						<input
-							className='button-radio'
-							type='radio'
-							name='units'
-							value='C'
-							id='C'
-							data-units='metric'
-							checked={'C' === temperatureUnit}
-							onChange={handleChangeRadioButtons}
-						/>
-						<span className='temperature-unit'>C</span>
-					</label>
-				</div>
-			</fieldset>
 		</form>
 	);
 };
