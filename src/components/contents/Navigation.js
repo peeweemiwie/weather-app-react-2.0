@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import './Navigation.scss';
-const Navigation = (props) => {
+const Navigation = props => {
+	const [propsComponent, setPropsComponent] = useState('current');
 	const [activeComponent, setActiveComponent] = useState('current');
-	const handleShowComponent = (event) => {
-		let componentToShow = event.target.getAttribute('data-component');
+
+	const receivedComponent = props.component;
+	if (propsComponent !== receivedComponent) {
+		setPropsComponent(receivedComponent);
+		setActiveComponent(receivedComponent);
+	}
+
+	const handleShowComponent = event => {
+		let componentToShow = event.target.getAttribute('data-tab');
 		setActiveComponent(componentToShow);
 		props.onActivateComponent(componentToShow);
 	};
+
 	return (
-		<nav className='Navigation'>
+		<nav className='Navigation' data-active-component={activeComponent}>
 			<button
 				className='NavButton btn-no-style current'
-				data-component='current'
+				data-tab='current'
 				onClick={handleShowComponent}
 				data-active={activeComponent === 'current'}
 			>
@@ -19,7 +28,7 @@ const Navigation = (props) => {
 			</button>
 			<button
 				className='NavButton btn-no-style forecast'
-				data-component='forecast'
+				data-tab='forecast'
 				onClick={handleShowComponent}
 				data-active={activeComponent === 'forecast'}
 			>

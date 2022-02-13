@@ -26,3 +26,17 @@
 		color: $white;
 	}
 }
+.horizontal-scroll-wrapper {
+	overflow-x: scroll;
+}
+.Main {
+	&[data-style='scroll'] {
+		transform: none;
+	}
+	&[data-style='current'] {
+		transform: translateX(0%);
+	}
+	&[data-style='forecast'] {
+		transform: translateX(-50%);
+	}
+}

@@ -6,13 +6,15 @@ import Current from '../current/Current';
 import Navigation from './Navigation';
 import './Contents.scss';
 
-const Contents = (props) => {
-	const [weatherData, setWeatherData] = useState({ loaded: false });
-	const [activeComponent, setActiveComponent] = useState('current');
-	const [units, setUnits] = useState('imperial');
+const Contents = props => {
 	const defaultCity = 'New York';
+	const current = 'current';
 
-	const setImportedData = (response) => {
+	const [weatherData, setWeatherData] = useState({ loaded: false });
+	const [activeComponent, setActiveComponent] = useState(current);
+	const [units, setUnits] = useState('imperial');
+
+	const setImportedData = response => {
 		const data = response.data;
 		setWeatherData({
 			loaded: true,
@@ -28,12 +30,12 @@ const Contents = (props) => {
 		});
 	};
 
-	const setReceivedUnit = (value) => {
+	const setReceivedUnit = value => {
 		setUnits(value);
 	};
 
-	// receive component to show on mobile from Navigation tabs
-	const showComponent = (component) => {
+	// receive component to show on mobile from Navigation tabs or by scrolling main content
+	const showComponent = component => {
 		setActiveComponent(component);
 	};
 
@@ -49,9 +51,19 @@ const Contents = (props) => {
 				onReceivedData={setImportedData}
 				onReceivedUnits={setReceivedUnit}
 			/>
-			<Navigation onActivateComponent={showComponent} />
+
+			<Navigation
+				onActivateComponent={showComponent}
+				component={activeComponent}
+			/>
+
 			{weatherData.loaded ? (
-				<Current data={weatherData} units={units} component={activeComponent} />
+				<Current
+					data={weatherData}
+					units={units}
+					component={activeComponent}
+					onActivateComponent={showComponent}
+				/>
 			) : (
 				<p>Loading...</p>
 			)}

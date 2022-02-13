@@ -2,7 +2,7 @@
 .Contents {
 	font-size: $font-size-sm;
 	font-weight: 300;
-	overflow-x: hidden;
+	// overflow-x: hidden;
 	@include respond-above(sm) {
 		display: grid;
 		row-gap: 1rem;
@@ -11,26 +11,27 @@
 	.Main {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+		overflow-x: hidden;
 		transition: transform 100ms ease-in-out;
 		width: 200%;
 
-		&[data-units='imperial'] {
-			.unit-metric {
-				display: none;
-			}
-		}
-		&[data-units='metric'] {
-			.unit-imperial {
-				display: none;
-			}
-		}
+		// &[data-units='imperial'] {
+		// 	.unit-metric {
+		// 		display: none;
+		// 	}
+		// }
+		// &[data-units='metric'] {
+		// 	.unit-imperial {
+		// 		display: none;
+		// 	}
+		// }
 
-		&[data-component='current'] {
-			transform: translateX(0);
-		}
-		&[data-component='forecast'] {
-			transform: translateX(-50%);
-		}
+		// &[data-component='current'] {
+		// 	transform: translateX(0);
+		// }
+		// &[data-component='forecast'] {
+		// 	transform: translateX(-50%);
+		// }
 		@include respond-above(sm) {
 			column-gap: 2rem;
 			display: grid;
